@@ -95,19 +95,25 @@ function kind(link) {
 }
 
 function renderItem(it) {
-  const search = esc(`${it.title} ${it.note}`.toLowerCase());
-  let img = '';
+  const search = esc(`${it.title} ${it.note} ${it.link && !isTodo(it.link) ? kind(it.link) : ''}`.toLowerCase());
+  // picture items (CAD etc.) render as figures; everything else as list rows
   if (it.image) {
-    if (isTodo(it.image)) img = '<div class="res-img res-img-todo"><span>Image coming soon</span></div>';
-    else if (isUrl(it.image)) img = `<div class="res-img"><img src="${esc(it.image)}" alt="" loading="lazy"></div>`;
-    else { addFile(it.image); img = `<div class="res-img"><img data-file-src="${esc(it.image)}" alt=""></div>`; }
+    let img;
+    if (isTodo(it.image)) img = '<div class="hub2-fig-img todo"><span>Image coming soon</span></div>';
+    else if (isUrl(it.image)) img = `<div class="hub2-fig-img"><img src="${esc(it.image)}" alt="" loading="lazy"></div>`;
+    else { addFile(it.image); img = `<div class="hub2-fig-img"><img data-file-src="${esc(it.image)}" alt=""></div>`; }
+    const cap = `<figcaption><b>${esc(it.title)}</b>${it.note ? ` <span>${esc(it.note)}</span>` : ''}${isTodo(it.link) || !it.link ? ' <em>Coming soon</em>' : ''}</figcaption>`;
+    if (!it.link || isTodo(it.link)) return `<figure class="hub2-fig" data-q="${search}">${img}${cap}</figure>`;
+    if (isUrl(it.link)) return `<figure class="hub2-fig" data-q="${search}"><a href="${esc(it.link)}" target="_blank" rel="noopener">${img}${cap}</a></figure>`;
+    addFile(it.link);
+    return `<figure class="hub2-fig" data-q="${search}"><a href="#" data-file="${esc(it.link)}" download="${esc(basename(it.link))}">${img}${cap}</a></figure>`;
   }
   const note = it.note ? `<i>${esc(it.note)}</i>` : '';
-  if (!it.link) return `<div class="res res-plain" data-q="${search}">${img}<div class="res-body"><b>${esc(it.title)}</b>${note}</div></div>`;
-  if (isTodo(it.link)) return `<div class="res res-todo" data-q="${search}">${img}<div class="res-body"><span class="res-kind">Coming soon</span><b>${esc(it.title)}</b>${note}</div></div>`;
-  if (isUrl(it.link)) return `<a class="res" data-q="${search}" href="${esc(it.link)}" target="_blank" rel="noopener">${img}<div class="res-body"><span class="res-kind">${kind(it.link)} ↗</span><b>${esc(it.title)}</b>${note}</div></a>`;
+  if (!it.link) return `<li data-q="${search}"><div class="hub2-row plain"><span class="k"></span><b>${esc(it.title)}</b>${note}</div></li>`;
+  if (isTodo(it.link)) return `<li data-q="${search}"><div class="hub2-row soon"><span class="k">Coming soon</span><b>${esc(it.title)}</b>${note}</div></li>`;
+  if (isUrl(it.link)) return `<li data-q="${search}"><a class="hub2-row" href="${esc(it.link)}" target="_blank" rel="noopener"><span class="k">${kind(it.link)}</span><b>${esc(it.title)}</b>${note}<span class="go" aria-hidden="true">↗</span></a></li>`;
   addFile(it.link);
-  return `<a class="res" data-q="${search}" href="#" data-file="${esc(it.link)}" download="${esc(basename(it.link))}">${img}<div class="res-body"><span class="res-kind">${kind(it.link)} · download</span><b>${esc(it.title)}</b>${note}</div></a>`;
+  return `<li data-q="${search}"><a class="hub2-row" href="#" data-file="${esc(it.link)}" download="${esc(basename(it.link))}"><span class="k">${kind(it.link)}</span><b>${esc(it.title)}</b>${note}<span class="go" aria-hidden="true">↓</span></a></li>`;
 }
 
 function render(sections) {
@@ -115,31 +121,30 @@ function render(sections) {
   const rest = sections.filter(s => s !== ann);
   const tabs = ['<a class="hub-tab" href="#hub-home" data-tab="hub-home">Home</a>']
     .concat(rest.map(s => `<a class="hub-tab" href="#hub-${slug(s.title)}" data-tab="hub-${slug(s.title)}">${esc(s.title)}</a>`)).join('');
-  const notices = ann ? ann.items.map(it => `<div class="notice" data-q="${esc((it.title + ' ' + it.note).toLowerCase())}"><b>${esc(it.title)}</b>${it.note ? `<p>${esc(it.note)}</p>` : ''}${it.link && !isTodo(it.link) ? `<p><a href="${esc(it.link)}" target="_blank" rel="noopener">Open ↗</a></p>` : ''}</div>`).join('') : '';
-  const tiles = rest.map(s => {
-    const ready = s.items.filter(it => !isTodo(it.link)).length;
-    return `<a class="hub-tile" href="#hub-${slug(s.title)}" data-tab="hub-${slug(s.title)}"><span>${s.items.length} item${s.items.length === 1 ? '' : 's'}${ready < s.items.length ? ` · ${s.items.length - ready} coming soon` : ''}</span><b>${esc(s.title)}</b><i>${esc(s.desc)}</i></a>`;
+  const notices = ann ? ann.items.map(it => `<div class="hub2-notice" data-q="${esc((it.title + ' ' + it.note).toLowerCase())}"><b>${esc(it.title)}</b>${it.note ? `<p>${esc(it.note)}</p>` : ''}${it.link && !isTodo(it.link) ? `<p><a href="${esc(it.link)}" target="_blank" rel="noopener">Open ↗</a></p>` : ''}</div>`).join('') : '';
+  const index = rest.map(s => {
+    const soon = s.items.filter(it => isTodo(it.link)).length;
+    return `<li><a class="hub2-row" href="#hub-${slug(s.title)}" data-tab="hub-${slug(s.title)}"><span class="k">${s.items.length} item${s.items.length === 1 ? '' : 's'}${soon ? `, ${soon} soon` : ''}</span><b>${esc(s.title)}</b><i>${esc(s.desc)}</i><span class="go" aria-hidden="true">→</span></a></li>`;
   }).join('');
   const home = `<section class="hub-panel" id="hub-home" data-panel>
-      ${notices ? `<div class="hub-label">This week</div><div class="notices">${notices}</div>` : ''}
-      <div class="hub-label">Sections</div><div class="hub-links">${tiles}</div>
+      ${notices ? `<h2 class="hub2-h">This week</h2>${notices}` : ''}
+      <h2 class="hub2-h">Everything in the hub</h2><ul class="hub2-list">${index}</ul>
     </section>`;
   const panels = rest.map(s => {
-    const gallery = s.items.some(it => it.image);
+    const pics = s.items.filter(it => it.image), rows = s.items.filter(it => !it.image);
     return `<section class="hub-panel" id="hub-${slug(s.title)}" data-panel>
-      <div class="hub-panel-head"><h2>${esc(s.title)}</h2>${s.desc ? `<p>${esc(s.desc)}</p>` : ''}</div>
-      <div class="res-grid${gallery ? ' res-gallery' : ''}">${s.items.map(renderItem).join('')}</div>
+      <h2 class="hub2-h">${esc(s.title)}</h2>${s.desc ? `<p class="p2-note">${esc(s.desc)}</p>` : ''}
+      ${pics.length ? `<div class="hub2-figs">${pics.map(renderItem).join('')}</div>` : ''}
+      ${rows.length ? `<ul class="hub2-list">${rows.map(renderItem).join('')}</ul>` : ''}
     </section>`;
   }).join('');
-  return `<section class="hub-head"><div class="wrap">
-      <div class="kicker">Team Hub</div>
-      <h1 class="h-lg" style="margin-top:16px">Welcome back, Trojans.</h1>
-      <div class="rule in"></div>
-      <p class="lede">Documents, journals, CAD, instructions, and links for Team 5608.</p>
+  return `<section class="hub2-head"><div class="p2-wrap">
+      <p class="p2-eyebrow">Team Hub</p>
+      <h1 class="p2-title">Welcome back, Trojans.</h1>
     </div></section>
-    <div class="hub-nav"><div class="hub-nav-in"><nav class="hub-tabs">${tabs}</nav>
+    <div class="hub-nav"><div class="p2-wrap hub-nav-in"><nav class="hub-tabs" aria-label="Hub sections">${tabs}</nav>
       <label class="hub-search"><span class="sr">Search the hub</span><input id="hubSearch" type="search" placeholder="Search the hub" autocomplete="off"></label></div></div>
-    <div class="wrap hub-wrap">${home}${panels}
+    <div class="p2-wrap hub2-body">${home}${panels}
       <p class="hub-none" id="hubNone" hidden>Nothing matches that search.</p>
       <p class="hub-howto">To add something, edit <code>_private/team-hub.md</code> and run <code>update-team-hub.bat</code>. Instructions are at the top of that file.</p>
     </div>`;

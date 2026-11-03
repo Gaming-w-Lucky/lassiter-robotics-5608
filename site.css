@@ -962,7 +962,7 @@ a.res:hover{border-color:rgba(201,162,39,.6);transform:translateY(-3px)}
    Loads only when the Adobe Fonts Web Project link is added to a page;
    until then this falls back to the current display font (no change).
    ================================================================== */
-:root{--num:"cc-running-with-scissors","CC Running With Scissors",var(--disp)}
+:root{--num:"cc-running-with-scissors-up","cc-running-with-scissors",var(--disp)}
 .hero .num,.mark b,.p2-years .y{font-family:var(--num)}
 
 /* ==================================================================
@@ -1081,3 +1081,91 @@ body.page2{background:#0B0B0D}
 .p2-thanks a{display:inline-block;margin-top:18px;color:var(--gold-lt);text-decoration:underline;text-underline-offset:4px}
 .p2-photos img{aspect-ratio:3/2;object-fit:cover}
 .p2-photos .wide img{aspect-ratio:21/10}
+
+/* ==================================================================
+   15. HONORS (homepage awards) — two current awards with drawn icons,
+   earlier awards on one quiet line. No boxes.
+   ================================================================== */
+.honors{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(30px,4vw,48px);border-top:1px solid rgba(201,162,39,.35)}
+.honor{display:flex;gap:clamp(18px,2.4vw,28px);align-items:center;padding:clamp(24px,3vw,34px) clamp(4px,2vw,28px) clamp(24px,3vw,34px) 0}
+.honor+.honor{border-left:1px solid var(--line);padding-left:clamp(20px,3vw,40px)}
+.honor-ico{flex:none;width:clamp(58px,6vw,78px);height:auto;fill:none;stroke:var(--gold);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.honor-ico .fill{fill:var(--gold-lt);stroke:none}
+.honor h3{font-size:clamp(1.6rem,2.6vw,2.3rem);line-height:.95;color:var(--white)}
+.honor p{margin-top:8px;color:var(--muted);font-size:.92rem}
+.honors-earlier{margin-top:6px;padding-top:18px;border-top:1px solid var(--line);font-size:.88rem;color:rgba(244,242,237,.55)}
+.honors-earlier b{font-weight:600;color:rgba(244,242,237,.75);margin-right:10px}
+@media(max-width:760px){.honors{grid-template-columns:1fr}.honor+.honor{border-left:0;border-top:1px solid var(--line);padding-left:0}}
+
+/* contact + footer bits */
+.temp{display:inline-block;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:#14100A;background:var(--gold);padding:2px 6px;vertical-align:middle;margin-left:4px}
+.foot address{font-style:normal}
+.foot-mail{margin-top:14px;font-size:.9rem}
+.foot-mail a{color:var(--white);text-decoration:underline;text-decoration-color:rgba(201,162,39,.6);text-underline-offset:4px}
+.p2-inline{color:var(--white);text-decoration:underline;text-decoration-color:rgba(201,162,39,.6);text-underline-offset:4px}
+.nav-links a.hub-link.on{background:rgba(201,162,39,.14)}
+/* join status */
+.status{display:flex;gap:16px;align-items:flex-start}
+.status-dot{flex:none;width:12px;height:12px;border-radius:50%;background:var(--crimson-lt);margin-top:14px;box-shadow:0 0 0 4px rgba(200,30,37,.2)}
+.hero .num,.mark b,.p2-years .y{font-synthesis:none}
+
+/* ==================================================================
+   16. TEAM HUB v2 — photo + plain form login; file-browser lists inside
+   ================================================================== */
+.vault2{display:grid;grid-template-columns:1.1fr .9fr;min-height:100svh;padding-top:74px;background:#0B0B0D}
+.vault2[hidden]{display:none}
+.vault2-photo{position:relative;overflow:hidden;background:#000}
+.vault2-photo img{width:100%;height:100%;object-fit:cover;object-position:center 45%;display:block;opacity:.92}
+.vault2-side{display:flex;align-items:center;padding:clamp(36px,5vw,72px) var(--pad)}
+.vault2-form{width:min(420px,100%)}
+.vault2-form .p2-title{font-size:clamp(3rem,6vw,4.6rem)}
+.vault2-form .p2-body{margin-top:14px}
+.field2{display:block;margin-top:20px}
+.field2 span{display:block;font-weight:600;font-size:.9rem;color:var(--gold-lt);margin-bottom:8px}
+.field2 input{width:100%;font:inherit;font-size:1rem;color:var(--white);background:#121216;border:1px solid rgba(255,255,255,.2);border-radius:0;padding:13px 14px;outline:none}
+.field2 input:focus{border-color:var(--gold)}
+.vault2-form .btn{margin-top:24px;cursor:pointer;min-width:160px;justify-content:center}
+.vault2-form .btn:disabled{opacity:.6;cursor:wait}
+@media(max-width:860px){.vault2{grid-template-columns:1fr}.vault2-photo{height:34svh}}
+
+.hub2-bar{margin-top:74px;border-bottom:1px solid var(--line);background:#0F0F12}
+.hub2-bar-in{display:flex;justify-content:space-between;align-items:center;padding-top:12px;padding-bottom:12px;font-size:.9rem;color:var(--muted)}
+.hub2-lock{background:none;border:1px solid rgba(255,255,255,.25);color:var(--white);font:inherit;font-size:.86rem;font-weight:600;padding:8px 16px;cursor:pointer}
+.hub2-lock:hover{background:var(--white);color:var(--black)}
+.hub2-head{padding:clamp(36px,5vw,64px) 0 clamp(20px,3vw,32px)}
+.hub-page .hub-nav{position:sticky;top:74px;z-index:40;background:rgba(11,11,13,.96);border-top:1px solid var(--line);border-bottom:1px solid var(--line);scroll-margin-top:74px}
+.hub-page .hub-nav-in{display:flex;align-items:center;gap:20px}
+.hub-page .hub-tab{font-family:var(--sans);font-size:.92rem;font-weight:500;letter-spacing:0;text-transform:none;color:rgba(244,242,237,.62);padding:15px 0}
+.hub-page .hub-tab.on{color:var(--white);border-bottom-color:var(--gold)}
+.hub-page .hub-search input{background:#121216;border-color:rgba(255,255,255,.18)}
+@media(max-width:760px){.hub-page .hub-nav-in{flex-direction:column;align-items:stretch;gap:0;padding-top:6px;padding-bottom:10px}}
+.hub2-body{padding-top:clamp(30px,4vw,48px);padding-bottom:clamp(56px,7vw,90px)}
+.hub2-h{font-family:var(--disp);font-weight:800;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1;margin:clamp(26px,3vw,36px) 0 14px}
+.hub-panel>.hub2-h:first-child{margin-top:0}
+.hub2-notice{border-left:2px solid var(--crimson);padding:4px 0 4px 18px;margin-bottom:18px;max-width:70ch}
+.hub2-notice b{font-weight:600;font-size:1.05rem}
+.hub2-notice p{color:#DDD8CF;margin-top:6px}
+.hub2-notice a{color:var(--gold-lt)}
+.hub2-list{list-style:none;border-top:1px solid var(--line)}
+.hub2-list li[hidden]{display:none}
+.hub2-row{display:grid;grid-template-columns:10rem 1fr auto;grid-template-areas:"k b go" "k i go";column-gap:clamp(14px,2.5vw,32px);align-items:baseline;padding:15px 4px;border-bottom:1px solid var(--line);color:inherit}
+a.hub2-row:hover{background:rgba(255,255,255,.035)}
+a.hub2-row:hover b{color:var(--gold-lt)}
+.hub2-row .k{grid-area:k;font-size:.82rem;color:var(--gold);font-weight:500}
+.hub2-row b{grid-area:b;font-weight:600;font-size:1rem;color:var(--white)}
+.hub2-row i{grid-area:i;font-style:normal;font-size:.88rem;color:var(--muted);margin-top:3px}
+.hub2-row .go{grid-area:go;color:var(--muted);font-size:1rem}
+.hub2-row.soon b{color:rgba(244,242,237,.6)}
+.hub2-row.soon .k{color:rgba(147,144,138,.8)}
+@media(max-width:620px){.hub2-row{grid-template-columns:1fr auto;grid-template-areas:"k go" "b go" "i go"}.hub2-row .k{margin-bottom:2px}}
+.hub2-figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;margin-bottom:26px}
+.hub2-fig{margin:0}
+.hub2-fig[hidden]{display:none}
+.hub2-fig a{display:block;color:inherit}
+.hub2-fig-img{aspect-ratio:16/10;background:#121216;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.hub2-fig-img img{width:100%;height:100%;object-fit:contain}
+.hub2-fig-img.todo span{font-size:.85rem;color:var(--muted)}
+.hub2-fig figcaption{margin-top:10px;font-size:.92rem}
+.hub2-fig figcaption b{font-weight:600}
+.hub2-fig figcaption span{color:var(--muted)}
+.hub2-fig figcaption em{font-style:normal;font-size:.8rem;color:rgba(147,144,138,.8);margin-left:4px}
