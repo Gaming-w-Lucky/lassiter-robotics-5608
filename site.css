@@ -958,11 +958,11 @@ a.res:hover{border-color:rgba(201,162,39,.6);transform:translateY(-3px)}
 @media(prefers-reduced-motion:reduce){.hero-slide.on{animation:none;transform:none}}
 
 /* ==================================================================
-   13. TEAM FONT — Running With Scissors for the 5608 numbers.
-   Loads only when the Adobe Fonts Web Project link is added to a page;
-   until then this falls back to the current display font (no change).
+   13. NUMBER FONT — used for 5608 and the season years.
+   Currently the display font. To change it later, load the new font
+   on each page and set --num below.
    ================================================================== */
-:root{--num:"cc-running-with-scissors-up","cc-running-with-scissors",var(--disp)}
+:root{--num:var(--disp)}  /* swap in the team number font here later */
 .hero .num,.mark b,.p2-years .y{font-family:var(--num)}
 
 /* ==================================================================
@@ -1169,3 +1169,5 @@ a.hub2-row:hover b{color:var(--gold-lt)}
 .hub2-fig figcaption b{font-weight:600}
 .hub2-fig figcaption span{color:var(--muted)}
 .hub2-fig figcaption em{font-style:normal;font-size:.8rem;color:rgba(147,144,138,.8);margin-left:4px}
+.foot-mail .who{display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.foot-mail+.foot-mail{margin-top:10px}

@@ -18,7 +18,8 @@ the team username and password, the page source is just scrambled data.
    | Onshape CAD with a picture | `- GridLocker full robot \| https://cad.onshape.com/... \| 2026 assembly \| image: gridlocker.png` |
    | A file (PDF, Word, drawing…) | `- Battery care \| battery-care.pdf \| How we charge` (put `battery-care.pdf` in `_private/hub-files/`) |
    | Placeholder for later | `- Wiring standards \| TODO \| coming soon` |
-   | Plain text, no link | `- Coach Simons \| \| Room 1206` |
+   | Email address | `- Coach Simons \| mailto:tayler.simons@cobbk12.org \| Room 1206` |
+   | Plain text, no link | `- Team captains \| \| Ask at a meeting` |
 
    Start a new section/tab with `# Section name`, and give it a description with
    a `> text` line right under it. The link type (Google Doc, Onshape, PDF, GitHub…)

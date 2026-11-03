@@ -10,7 +10,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const IG = 'https://www.instagram.com/lassiterrobotics/';
-const EMAIL = 'haasith.lucky@gmail.com';   // TEMP contact address: replace with the team's own email
+const EMAIL = 'haasith.lucky@gmail.com';
+const COACH = 'tayler.simons@cobbk12.org';   // TEMP contact address: replace with the team's own email
 const PAGES = { 'index.html': 'home', 'robots.html': 'robots', 'outreach.html': 'outreach', 'join-team-5608.html': 'join', 'team-hub.html': 'hub' };
 
 const links = page => [
@@ -54,7 +55,8 @@ function footer(page) {
     <div>
       <h4>Lassiter Robotics<br><span style="color:var(--crimson-lt)">FRC Team 5608</span></h4>
       <address class="addr">Lassiter High School<br>2601 Shallowford Rd<br>Marietta, GA 30066</address>
-      <p class="foot-mail"><a href="mailto:${EMAIL}">${EMAIL}</a> <span class="temp">temp</span></p>
+      <p class="foot-mail"><span class="who">Coach Simons</span><a href="mailto:${COACH}">${COACH}</a></p>
+      <p class="foot-mail"><span class="who">Team</span><a href="mailto:${EMAIL}">${EMAIL}</a> <span class="temp">temp</span></p>
     </div>
     <div class="col">
       <b>Team</b>

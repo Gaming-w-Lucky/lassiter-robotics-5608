@@ -73,11 +73,12 @@ function addFile(name) {
 /* ------------------------------------------------------------ render */
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slug = s => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const isUrl = s => /^https?:\/\//i.test(s);
+const isUrl = s => /^(https?:\/\/|mailto:)/i.test(s);
 const isTodo = s => /^todo$/i.test(s);
 
 function kind(link) {
   const l = link.toLowerCase();
+  if (l.startsWith('mailto:')) return 'Email';
   if (l.includes('docs.google.com/document')) return 'Google Doc';
   if (l.includes('docs.google.com/spreadsheets')) return 'Google Sheet';
   if (l.includes('docs.google.com/presentation')) return 'Google Slides';
