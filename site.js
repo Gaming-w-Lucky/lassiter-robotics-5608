@@ -40,18 +40,45 @@
   window.revealAll();
 
   /* ---------- lightbox for [data-full] photos ---------- */
+  /* [data-gallery] holds a JSON list of {src, cap}; arrows / swipe / keys step through it */
   var box = document.getElementById('lightbox');
   if (box){
     var img = box.querySelector('img'), cap = box.querySelector('figcaption');
+    var list = [], at = 0;
+    var prev = document.createElement('button'), next = document.createElement('button'), count = document.createElement('span');
+    prev.className = 'lb-nav lb-prev'; prev.type = 'button'; prev.setAttribute('aria-label', 'Previous photo'); prev.textContent = '←';
+    next.className = 'lb-nav lb-next'; next.type = 'button'; next.setAttribute('aria-label', 'Next photo'); next.textContent = '→';
+    count.className = 'lb-count';
+    box.append(prev, next, count);
+    function show(i){
+      at = (i + list.length) % list.length;
+      img.src = list[at].src; img.alt = list[at].cap; cap.textContent = list[at].cap;
+      var many = list.length > 1;
+      prev.hidden = next.hidden = count.hidden = !many;
+      count.textContent = (at + 1) + ' / ' + list.length;
+    }
+    function open(items){ list = items; show(0); box.showModal(); }
     document.addEventListener('click', function(e){
+      var g = e.target.closest('[data-gallery]');
+      if (g){ e.preventDefault(); open(JSON.parse(g.getAttribute('data-gallery'))); return; }
       var t = e.target.closest('[data-full]');
       if (!t) return;
       e.preventDefault();
-      img.src = t.getAttribute('data-full');
-      img.alt = t.getAttribute('aria-label') || '';
-      cap.textContent = t.getAttribute('aria-label') || '';
-      box.showModal();
+      open([{ src: t.getAttribute('data-full'), cap: t.getAttribute('aria-label') || '' }]);
     });
+    prev.addEventListener('click', function(e){ e.stopPropagation(); show(at - 1); });
+    next.addEventListener('click', function(e){ e.stopPropagation(); show(at + 1); });
     box.addEventListener('click', function(){ box.close(); });
+    box.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); show(at - 1); }
+      if (e.key === 'ArrowRight'){ e.preventDefault(); show(at + 1); }
+    });
+    var x0 = null;
+    box.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+    box.addEventListener('touchend', function(e){
+      if (x0 === null || list.length < 2) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1));
+    });
   }
 })();
