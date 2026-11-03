@@ -1171,3 +1171,31 @@ a.hub2-row:hover b{color:var(--gold-lt)}
 .hub2-fig figcaption em{font-style:normal;font-size:.8rem;color:rgba(147,144,138,.8);margin-left:4px}
 .foot-mail .who{display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
 .foot-mail+.foot-mail{margin-top:10px}
+
+/* season photo drawers (robots.html) */
+.p2-more{margin-top:10px}
+.p2-more summary{cursor:pointer;font-size:.86rem;font-weight:500;color:var(--gold-lt);list-style:none;display:inline-flex;align-items:center;gap:8px}
+.p2-more summary::-webkit-details-marker{display:none}
+.p2-more summary::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;border:1px solid rgba(201,162,39,.55);font-size:.8rem;line-height:1}
+.p2-more[open] summary::before{content:"–"}
+.p2-thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.p2-thumbs a{display:block;cursor:zoom-in}
+.p2-thumbs img{width:118px;height:88px;object-fit:cover;display:block;background:#0A0A0C;border:1px solid var(--line);transition:border-color .2s}
+.p2-thumbs a:hover img{border-color:var(--gold)}
+@media(max-width:700px){.p2-thumbs img{width:88px;height:66px}}
+
+/* ==================================================================
+   17. SPONSORS PAGE
+   ================================================================== */
+.sp-names{list-style:none;border-top:1px solid var(--line)}
+.sp-names li{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1;padding:16px 0;border-bottom:1px solid var(--line)}
+.sp-budget{display:flex;gap:3px;margin-top:8px;min-height:112px}
+.sp-budget .seg{background:#1A1A1F;border-top:3px solid var(--gold);padding:16px 16px 18px;min-width:0}
+.sp-budget .seg:nth-child(2){border-top-color:var(--crimson-lt)}
+.sp-budget .seg:nth-child(3){border-top-color:rgba(244,242,237,.55)}
+.sp-budget b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1}
+.sp-budget span{display:block;margin-top:8px;font-size:.88rem;color:#CFCAC1}
+.sp-total{margin-top:16px;color:var(--muted)}
+.sp-total b{color:var(--white);font-weight:600}
+@media(max-width:620px){.sp-budget{flex-direction:column}.sp-budget .seg{flex:none!important}}
+.sp-h3{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,2.6vw,2rem);margin-bottom:12px}

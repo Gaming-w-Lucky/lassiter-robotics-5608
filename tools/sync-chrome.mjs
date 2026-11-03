@@ -12,7 +12,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const IG = 'https://www.instagram.com/lassiterrobotics/';
 const EMAIL = 'haasith.lucky@gmail.com';
 const COACH = 'tayler.simons@cobbk12.org';   // TEMP contact address: replace with the team's own email
-const PAGES = { 'index.html': 'home', 'robots.html': 'robots', 'outreach.html': 'outreach', 'join-team-5608.html': 'join', 'team-hub.html': 'hub' };
+const PAGES = { 'index.html': 'home', 'robots.html': 'robots', 'outreach.html': 'outreach', 'join-team-5608.html': 'join', 'team-hub.html': 'hub', 'sponsors.html': 'sponsors' };
 
 const links = page => [
   ['home', page === 'index.html' ? '#top' : 'index.html', 'Home'],
@@ -20,6 +20,7 @@ const links = page => [
   ['robots', 'robots.html', 'Robots'],
   ['outreach', 'outreach.html', 'Outreach'],
   ['join', 'join-team-5608.html', 'Join'],
+  ['sponsors', 'sponsors.html', 'Sponsors'],
 ];
 
 function nav(page, cur) {
@@ -64,6 +65,7 @@ function footer(page) {
       <a href="robots.html">Robots</a>
       <a href="outreach.html">Outreach</a>
       <a href="join-team-5608.html">Join</a>
+      <a href="sponsors.html">Sponsors</a>
       <a href="team-hub.html">Team Hub (members)</a>
     </div>
     <div class="col">
