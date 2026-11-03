@@ -473,8 +473,8 @@
   </div>
   <div class="foot-bar">
     <div>© 2026 Lassiter Robotics · FRC Team 5608</div>
-    <!-- REVIEW ONLY — delete this link before launch -->
-    <div><a href="#" onclick="replayGate();return false;" style="color:rgba(201,162,39,.75)">Replay entrance</a> · Go Trojans</div>
+    <!-- To review the entrance again, open the page with ?gate on the end of the URL. -->
+    <div>Go Trojans</div>
   </div>
 </footer>
 
@@ -498,9 +498,9 @@
      add #replay or ?gate to the URL, or call replayGate() in the console. */
   var forced = /(\?|&)gate\b/.test(location.search) || location.hash === '#replay';
 
-  /* DEVELOPMENT MODE: replay the entrance on every refresh while we tune it.
-     Set devReplay to false before launch to restore once-per-session behavior. */
-  var devReplay = true;
+  /* LAUNCH MODE: the entrance plays once per browser session.
+     Set devReplay to true to replay it on every refresh while tuning it. */
+  var devReplay = false;
   var seen = false;
   if (!devReplay){
     try { seen = sessionStorage.getItem('gate5608') === '1'; } catch(e){}
