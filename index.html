@@ -111,8 +111,16 @@
      HERO
      ================================================================ -->
 <section class="hero" id="top">
-  <!-- HERO IMAGE: add images/hero-robot.jpg, then delete data-slot below -->
-  <div class="hero-media slot" id="heroMedia" style="--img:url('images/hero.jpg');background-position:center 54%"></div>
+  <!-- HERO SLIDESHOW: photos cross-fade with a slow pan, one every 7 seconds.
+       To add one, copy a .hero-slide line and change the image and position. -->
+  <div class="hero-media" id="heroMedia">
+    <div class="hero-slide on" style="--img:url('images/2026/gridlocker-hero.jpg');background-position:center 62%"></div>
+    <div class="hero-slide" style="--img:url('images/2026/match-hub.jpg');background-position:center 40%"></div>
+    <div class="hero-slide" style="--img:url('images/2026/pit-crew.jpg');background-position:center 35%"></div>
+    <div class="hero-slide" style="--img:url('images/2026/match-red.jpg');background-position:center 55%"></div>
+    <div class="hero-slide" style="--img:url('images/2026/gridlocker-close.jpg');background-position:center 45%"></div>
+    <div class="hero-slide" style="--img:url('images/hero.jpg');background-position:center 54%"></div>
+  </div>
   <div class="hero-in">
     <div class="num">5608</div>
     <h1>Lassiter Robotics</h1>
@@ -624,8 +632,19 @@
     var stage = document.getElementById('callouts');
     if (stage) cio.observe(stage);
 
+    var media = document.getElementById("heroMedia");
+    /* hero slideshow: cross-fade + slow pan */
+    var slides = media.querySelectorAll(".hero-slide"), cur = 0;
+    if (slides.length > 1) setInterval(function(){
+      var prev = slides[cur];
+      cur = (cur + 1) % slides.length;
+      prev.classList.remove("on"); prev.classList.add("out");
+      slides[cur].classList.add("on");
+      setTimeout(function(){ prev.classList.remove("out"); }, 2000);
+    }, 7000);
+
     /* hero parallax */
-    var media = document.getElementById('heroMedia'), ticking = false;
+    var ticking = false;
     window.addEventListener('scroll', function(){
       if (ticking) return;
       ticking = true;

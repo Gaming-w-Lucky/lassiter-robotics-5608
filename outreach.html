@@ -8,17 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- TEAM FONT (Running With Scissors, Adobe Fonts): paste the Web Project link here, e.g.
+<link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"> -->
 <link rel="stylesheet" href="site.css">
 <!--
   FACT SOURCES
   Events: the team's own Instagram posts (instagram.com/lassiterrobotics), linked on each entry.
   Sponsors: The Blue Alliance team profile (thebluealliance.com/team/5608).
-  Add a new event by copying one <li class="ev"> block. Keep it to things that happened.
+  Add an event by copying one <li> in the "Where we've been" list. Only things that happened.
 -->
 </head>
-<body>
+<body class="page2">
 
-<header class="nav" id="nav">
+<header class="nav solid" id="nav">
   <div class="nav-in">
     <a class="mark" href="index.html"><b>5608</b><span>Lassiter Robotics</span></a>
     <nav class="nav-links">
@@ -46,55 +48,52 @@
   <a href="team-hub.html">Team Hub <span>Members</span></a>
 </div>
 
-<!-- ================================================================
-     HERO
-     ================================================================ -->
-<section class="robot-hero out-hero">
-  <div class="robot-hero-media slot" style="--img:url('images/outreach.jpg');background-position:center 45%"></div>
-  <div class="robot-hero-in">
-    <div class="kicker">Outreach</div>
-    <h1 class="out-title">Beyond the robot.</h1>
-    <p class="lede">The competition robot is one outcome. The rest of the year we bring robotics to students who haven't met it yet: demos, presentations, and events across our community.</p>
-    <div class="hero-cta">
-      <a class="btn btn-gold" href="#recent">Recent outreach <span class="ar">→</span></a>
-      <a class="btn btn-ghost" href="#invite">Invite us</a>
-    </div>
+<main>
+
+<section class="p2-cover">
+  <img class="p2-cover-img" src="images/outreach.jpg" alt="Lassiter Robotics students showing a robot to younger students in a school gym" style="object-position:center 45%">
+</section>
+
+<section class="p2-plate">
+  <div class="p2-wrap">
+    <p class="p2-eyebrow">Outreach</p>
+    <h1 class="p2-title">Beyond the robot.</h1>
+  </div>
+  <div class="p2-wrap p2-intro">
+    <p>The competition robot is one outcome. The rest of the year we take robotics to students who haven't met it yet: school visits, STEM nights, and community events around Marietta.</p>
+    <p class="p2-links"><a href="#recent">Where we've been</a><a href="#invite">Invite us</a><a href="https://www.instagram.com/lassiterrobotics/" target="_blank" rel="noopener">Instagram ↗</a></p>
   </div>
 </section>
 
 <!-- ================================================================
-     RECENT OUTREACH — from the team's Instagram
+     WHERE WE'VE BEEN — from the team's Instagram
      ================================================================ -->
-<section class="sec-dark" id="recent">
-  <div class="wrap">
-    <div class="rv">
-      <div class="kicker">Recent outreach</div>
-      <h2 class="h-lg" style="margin-top:16px">Where we've been.</h2>
-      <div class="rule"></div>
-    </div>
-    <ol class="ev-timeline">
-      <li class="tl-ev rv">
-        <time>Oct 2026</time>
+<section class="p2-sec" id="recent">
+  <div class="p2-wrap">
+    <h2 class="p2-h">Where we've been</h2>
+    <ol class="p2-log">
+      <li>
+        <time>October 2026</time>
         <div>
           <h3>Shallowford Falls Elementary</h3>
           <p>We brought our robot to Shallowford Falls Elementary to put STEM in front of elementary students and show them what an FRC team does.</p>
-          <a href="https://www.instagram.com/p/De1_AyhlUsG/" target="_blank" rel="noopener">See the post on Instagram ↗</a>
+          <a href="https://www.instagram.com/p/De1_AyhlUsG/" target="_blank" rel="noopener">See the post ↗</a>
         </div>
       </li>
-      <li class="tl-ev rv">
-        <time>Oct 7, 2026</time>
+      <li>
+        <time>October 7, 2026</time>
         <div>
           <h3>STEM Night</h3>
-          <p>A team presentation and live robot demonstration, showing how robotics brings together engineering, programming, problem-solving, and teamwork.</p>
-          <a href="https://www.instagram.com/p/DeNKs-TATee/" target="_blank" rel="noopener">See the post on Instagram ↗</a>
+          <p>A team presentation and a live robot demo, showing how robotics brings together engineering, programming, problem-solving, and teamwork.</p>
+          <a href="https://www.instagram.com/p/DeNKs-TATee/" target="_blank" rel="noopener">See the post ↗</a>
         </div>
       </li>
-      <li class="tl-ev rv">
-        <time>Oct 2025</time>
+      <li>
+        <time>October 2025</time>
         <div>
           <h3>Epilepsy awareness</h3>
           <p>For epilepsy awareness, the team painted a pumpkin purple and added the Lassiter Robotics logo.</p>
-          <a href="https://www.instagram.com/p/DQfaHM7gZ9I/" target="_blank" rel="noopener">See the post on Instagram ↗</a>
+          <a href="https://www.instagram.com/p/DQfaHM7gZ9I/" target="_blank" rel="noopener">See the post ↗</a>
         </div>
       </li>
     </ol>
@@ -104,38 +103,30 @@
 <!-- ================================================================
      NUMBERS — only publish real ones
      ================================================================ -->
-<section class="sec-char">
-  <div class="wrap">
-    <div class="rv">
-      <div class="kicker">Impact</div>
-      <h2 class="h-lg" style="margin-top:16px">By the numbers.</h2>
-      <div class="rule"></div>
-    </div>
+<section class="p2-sec p2-dark">
+  <div class="p2-wrap">
+    <h2 class="p2-h">By the numbers</h2>
     <!-- TODO: only publish these once you have real numbers. Delete the block otherwise. -->
-    <div class="impact rv">
-      <div><b><span class="todo">TODO</span></b><span>Students reached</span></div>
-      <div><b><span class="todo">TODO</span></b><span>Outreach events</span></div>
-      <div><b><span class="todo">TODO</span></b><span>Volunteer hours</span></div>
-    </div>
+    <dl class="p2-stats">
+      <div><dt>Students reached</dt><dd><span class="todo">TODO</span></dd></div>
+      <div><dt>Outreach events</dt><dd><span class="todo">TODO</span></dd></div>
+      <div><dt>Volunteer hours</dt><dd><span class="todo">TODO</span></dd></div>
+    </dl>
   </div>
 </section>
 
 <!-- ================================================================
-     INVITE + SUPPORT
+     INVITE + THANK YOU
      ================================================================ -->
-<section class="sec-dark" id="invite">
-  <div class="wrap invite-grid">
-    <div class="rv">
-      <div class="kicker">Invite us</div>
-      <h2 class="h-lg" style="margin-top:16px">Want a robot at your school?</h2>
-      <div class="rule"></div>
-      <p class="lede">We bring the robot to schools, STEM nights, and community events. Send us a message on Instagram or talk to Coach Simons in Room 1206 at Lassiter High School.</p>
-      <div class="hero-cta">
-        <a class="btn btn-gold" href="https://www.instagram.com/lassiterrobotics/" target="_blank" rel="noopener">Message us on Instagram ↗</a>
-      </div>
+<section class="p2-sec" id="invite">
+  <div class="p2-wrap p2-split">
+    <div>
+      <h2 class="p2-h">Want a robot at your school?</h2>
+      <p class="p2-body">We bring the robot to schools, STEM nights, and community events. Send us a message on Instagram, or talk to Coach Simons in Room 1206 at Lassiter High School.</p>
+      <p style="margin-top:26px"><a class="btn btn-gold" href="https://www.instagram.com/lassiterrobotics/" target="_blank" rel="noopener">Message us on Instagram</a></p>
     </div>
-    <div class="support rv" style="--d:.08s">
-      <div class="kicker">Thank you</div>
+    <div class="p2-thanks">
+      <h3>Thank you</h3>
       <p>None of this happens without the families, boosters, and sponsors behind the team.</p>
       <ul>
         <li>Intercontinental Exchange</li>
@@ -149,9 +140,8 @@
   </div>
 </section>
 
-<!-- ================================================================
-     INSTAGRAM
-     ================================================================ -->
+</main>
+
 <section class="ig-band">
   <a class="ig-band-in" href="https://www.instagram.com/lassiterrobotics/" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" class="dot"/></svg>

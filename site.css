@@ -194,6 +194,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-h
   animation:breathe 4.8s ease-in-out infinite;
 }
 @keyframes breathe{0%,100%{opacity:.24}50%{opacity:.52}}
+#gate.open .seam{animation:none;opacity:0;transition:opacity .45s ease}
 #gate.arming .seam{
   animation:none;opacity:1;
   box-shadow:0 0 64px 16px rgba(240,210,122,.75),0 0 220px 70px rgba(201,162,39,.42);
@@ -202,12 +203,12 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-h
 
 /* light spilling through as the doors part */
 .spill{
-  position:absolute;top:0;bottom:0;left:50%;width:2px;transform:translateX(-50%);z-index:2;
-  background:linear-gradient(180deg,rgba(240,210,122,0),rgba(240,210,122,.9),rgba(164,20,26,.6),rgba(240,210,122,0));
-  opacity:0;
+  position:absolute;top:0;bottom:0;left:0;right:0;z-index:2;pointer-events:none;
+  background:radial-gradient(50% 70% at 50% 50%,rgba(240,210,122,.55),rgba(164,20,26,.22) 45%,transparent 72%);
+  opacity:0;transform:scaleX(.02);will-change:transform,opacity;
 }
-#gate.open .spill{animation:spill 3s var(--ease) forwards}
-@keyframes spill{0%{opacity:0;width:2px}22%{opacity:1;width:78px}100%{opacity:0;width:105vw}}
+#gate.open .spill{animation:spill 2.6s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes spill{0%{opacity:0;transform:scaleX(.02)}18%{opacity:.9;transform:scaleX(.18)}100%{opacity:0;transform:scaleX(1.25)}}
 
 /* atmosphere */
 .haze{position:absolute;inset:0;z-index:6;pointer-events:none;
@@ -233,7 +234,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-h
   content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:min(1000px,88vw);height:min(760px,86vh);pointer-events:none;
   background:radial-gradient(50% 50% at 50% 50%,rgba(4,2,3,.92) 0%,rgba(4,2,3,.74) 48%,rgba(4,2,3,0) 76%);
+  transition:opacity .7s ease;
 }
+#gate.open .gate-ui::before{opacity:0}
 
 /* the emblem — real Trojan mark, forged into a medallion */
 .emblem{
@@ -314,8 +317,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-h
 @keyframes openL{0%{transform:translateX(0)}100%{transform:translateX(-101%)}}
 @keyframes openR{0%{transform:translateX(0)}100%{transform:translateX(101%)}}
 #gate.open .arch{animation:archOut 3.2s cubic-bezier(.5,.02,.2,1) forwards}
-@keyframes archOut{0%{opacity:1}64%{opacity:1}100%{opacity:0;transform:scale(1.14)}}
-#gate.open .haze,#gate.open .motes{animation:none;opacity:0;transition:opacity 1s ease}
+@keyframes archOut{0%{opacity:1}40%{opacity:1}100%{opacity:0;transform:scale(1.06)}}
+#gate.open .haze,#gate.open .motes{opacity:0;transition:opacity 1.1s ease}
 
 @media(max-width:620px){
   .ram{display:none}
@@ -938,3 +941,143 @@ a.res:hover{border-color:rgba(201,162,39,.6);transform:translateY(-3px)}
 /* nav: keep every link on one line at laptop widths */
 .nav-links a,.mark span{white-space:nowrap}
 @media(max-width:1180px){.nav-links{gap:20px}.mark span{display:none}}
+
+/* ==================================================================
+   12. HERO SLIDESHOW — cross-fade with a slow pan (Ken Burns)
+   ================================================================== */
+.hero-media{background:var(--char)}
+.hero-slide{
+  position:absolute;inset:0;background-image:var(--img);background-size:cover;background-repeat:no-repeat;
+  opacity:0;transition:opacity 1.8s ease;will-change:opacity,transform;
+}
+.hero-slide.on{opacity:1}
+.hero-slide.on,.hero-slide.out{animation:heroPan 9.5s linear forwards}
+.hero-slide:nth-child(even).on,.hero-slide:nth-child(even).out{animation-name:heroPan2}
+@keyframes heroPan{from{transform:scale(1.12) translate3d(-1.8%,.6%,0)}to{transform:scale(1.03) translate3d(1.8%,-.6%,0)}}
+@keyframes heroPan2{from{transform:scale(1.03) translate3d(1.8%,0,0)}to{transform:scale(1.12) translate3d(-1.8%,-.8%,0)}}
+@media(prefers-reduced-motion:reduce){.hero-slide.on{animation:none;transform:none}}
+
+/* ==================================================================
+   13. TEAM FONT — Running With Scissors for the 5608 numbers.
+   Loads only when the Adobe Fonts Web Project link is added to a page;
+   until then this falls back to the current display font (no change).
+   ================================================================== */
+:root{--num:"cc-running-with-scissors","CC Running With Scissors",var(--disp)}
+.hero .num,.mark b,.p2-years .y{font-family:var(--num)}
+
+/* ==================================================================
+   14. INNER PAGES v2 (robots, outreach) — editorial, photo-led.
+   Scoped to body.page2 so the homepage is untouched.
+   No gradient text, no glows, no grid backgrounds, no hover-lift cards,
+   sentence-case headings, real tables and lists instead of boxes.
+   ================================================================== */
+body.page2{background:#0B0B0D}
+.page2 h1,.page2 h2,.page2 h3{text-transform:none;letter-spacing:-.005em}
+.p2-wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.p2-narrow{max-width:860px}
+
+/* cover photo: shown as-is, only a soft fade at the top for the nav */
+.p2-cover{position:relative;height:min(76svh,820px);min-height:340px;overflow:hidden;background:#000}
+.p2-cover-img{width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block}
+.p2-cover::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(8,8,10,.7) 0,rgba(8,8,10,0) 22%,rgba(8,8,10,0) 80%,#0F0F12 100%)}
+
+/* nameplate strip under the photo */
+.p2-plate{background:#0F0F12;padding:clamp(28px,4vw,48px) 0 clamp(40px,5vw,64px);border-bottom:1px solid var(--line)}
+.p2-plate-in{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.p2-eyebrow{font-family:var(--sans);font-weight:600;font-size:.95rem;color:var(--gold-lt)}
+.p2-wordmark{margin-top:12px;line-height:0}
+.p2-wordmark img{width:min(760px,100%);height:auto;image-rendering:auto}
+.p2-sticker{width:clamp(120px,15vw,200px);height:auto;transform:rotate(-5deg);margin-bottom:-6px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.55))}
+@media(max-width:620px){.p2-sticker{display:none}}
+.p2-title{font-family:var(--disp);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);line-height:.92;margin-top:10px}
+.p2-intro{margin-top:clamp(20px,3vw,30px)}
+.p2-intro p{font-size:clamp(1.02rem,1.3vw,1.18rem);line-height:1.65;color:#E6E2DA;max-width:64ch}
+.p2-links{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:22px}
+.p2-links a,.p2-source a{color:var(--white);text-decoration:underline;text-decoration-color:rgba(201,162,39,.6);text-underline-offset:4px;text-decoration-thickness:1px;font-weight:500}
+.p2-links a:hover,.p2-source a:hover{color:var(--gold-lt)}
+.p2-intro .p2-links{font-size:.95rem}
+
+/* sections */
+.p2-sec{padding:clamp(56px,8vw,104px) 0}
+.p2-dark{background:#0F0F12;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.p2-h{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,4.4vw,3.5rem);line-height:.95;margin-bottom:18px}
+.p2-note{color:var(--muted);font-size:.95rem;max-width:62ch;margin-bottom:26px}
+.p2-body{font-size:clamp(1.02rem,1.25vw,1.12rem);line-height:1.7;color:#E3DFD7;max-width:66ch}
+.p2-source{margin-top:18px;font-size:.85rem;color:var(--muted)}
+.p2-split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:start}
+@media(max-width:900px){.p2-split{grid-template-columns:1fr}}
+
+/* spec sheet */
+.p2-spec{width:100%;border-collapse:collapse}
+.p2-spec tr{border-top:1px solid var(--line)}
+.p2-spec tr:last-child{border-bottom:1px solid var(--line)}
+.p2-spec th{text-align:left;vertical-align:top;width:8.5rem;padding:15px 16px 15px 0;font-weight:600;font-size:.95rem;color:var(--gold-lt)}
+.p2-spec td{padding:15px 0;color:#DDD8CF;line-height:1.55}
+@media(max-width:520px){.p2-spec th,.p2-spec td{display:block;width:auto;padding:0}.p2-spec th{padding-top:14px}.p2-spec td{padding:4px 0 14px}}
+
+/* photos with captions */
+.p2-fig{margin:0}
+.p2-fig img{width:100%;height:auto;display:block;background:#111}
+.p2-fig figcaption{font-size:.86rem;color:var(--muted);margin-top:10px}
+.p2-fig a{display:block;cursor:zoom-in}
+.p2-photos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,34px) clamp(16px,2.2vw,26px);margin-top:8px}
+.p2-photos .wide{grid-column:1/-1}
+@media(max-width:620px){.p2-photos{grid-template-columns:1fr}}
+
+/* results scoreboard */
+.p2-table-wrap{overflow-x:auto;margin-top:8px}
+.p2-board{width:100%;min-width:720px;border-collapse:collapse;font-size:.95rem}
+.p2-board th{text-align:left;font-weight:600;font-size:.8rem;color:var(--muted);padding:0 14px 12px 0;border-bottom:1px solid rgba(255,255,255,.22)}
+.p2-board td{padding:16px 14px 16px 0;border-bottom:1px solid var(--line);vertical-align:top;color:#DDD8CF}
+.p2-board td b{display:block;color:var(--white);font-weight:600}
+.p2-board td span{display:block;font-size:.82rem;color:var(--muted);margin-top:2px}
+.p2-board td:nth-child(3),.p2-board td:nth-child(4){font-variant-numeric:tabular-nums}
+.p2-board .aw{color:var(--gold-lt);font-weight:600}
+
+/* every season */
+.p2-years{list-style:none;border-top:1px solid var(--line)}
+.p2-years li{display:grid;grid-template-columns:7.5rem 168px 1fr;gap:clamp(14px,2.4vw,28px);align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.p2-years .y{font-family:var(--num);font-weight:900;font-size:clamp(1.9rem,3vw,2.5rem);line-height:1}
+.p2-years img,.p2-years .noimg{width:168px;height:112px;object-fit:cover;display:block;background:#0A0A0C}
+.p2-years img.contain{object-fit:contain}
+.p2-years .noimg{display:grid;place-items:center;font-size:.78rem;color:var(--muted);border:1px dashed rgba(255,255,255,.14)}
+.p2-years b{font-weight:600;font-size:.95rem;color:var(--white)}
+.p2-years p{color:#CFCAC1;font-size:.92rem;margin-top:4px;line-height:1.55}
+.p2-years li.gap{grid-template-columns:7.5rem 1fr;color:var(--muted)}
+.p2-years li.gap .y{color:rgba(244,242,237,.45)}
+.p2-years li.gap p{color:var(--muted);margin:0}
+@media(max-width:700px){
+  .p2-years li{grid-template-columns:96px 1fr;align-items:start}
+  .p2-years img,.p2-years .noimg{width:96px;height:64px;grid-row:span 2}
+  .p2-years .y{grid-column:2;font-size:1.7rem}
+  .p2-years li>div{grid-column:2}
+  .p2-years li.gap{grid-template-columns:96px 1fr}
+  .p2-years li.gap .y{grid-column:1}
+}
+
+/* join strip */
+.p2-join{background:#0F0F12;border-top:1px solid var(--line);padding:clamp(36px,5vw,56px) 0}
+.p2-join .p2-wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.p2-join p{font-size:clamp(1.1rem,1.6vw,1.35rem);color:#E6E2DA;max-width:46ch}
+
+/* outreach log */
+.p2-log{list-style:none;border-top:1px solid var(--line);margin-top:8px}
+.p2-log li{display:grid;grid-template-columns:11rem 1fr;gap:clamp(14px,3vw,40px);padding:clamp(22px,3vw,30px) 0;border-bottom:1px solid var(--line)}
+.p2-log time{color:var(--gold-lt);font-weight:600;font-size:.95rem;padding-top:6px}
+.p2-log h3{font-family:var(--disp);font-weight:800;font-size:clamp(1.7rem,2.6vw,2.2rem);line-height:1}
+.p2-log p{color:#DDD8CF;margin-top:10px;max-width:62ch;line-height:1.65}
+.p2-log a{display:inline-block;margin-top:10px;color:var(--white);text-decoration:underline;text-decoration-color:rgba(201,162,39,.6);text-underline-offset:4px;font-size:.92rem}
+@media(max-width:620px){.p2-log li{grid-template-columns:1fr;gap:6px}}
+.p2-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+.p2-stats dt{color:var(--muted);font-size:.92rem}
+.p2-stats dd{margin-top:8px}
+@media(max-width:620px){.p2-stats{grid-template-columns:1fr}}
+.p2-thanks{border-left:2px solid var(--crimson);padding-left:clamp(20px,3vw,30px)}
+.p2-thanks h3{font-family:var(--disp);font-weight:800;font-size:1.9rem}
+.p2-thanks p{color:#DDD8CF;margin-top:10px}
+.p2-thanks ul{list-style:none;margin-top:16px}
+.p2-thanks li{font-weight:600;padding:5px 0;border-bottom:1px solid var(--line)}
+.p2-thanks a{display:inline-block;margin-top:18px;color:var(--gold-lt);text-decoration:underline;text-underline-offset:4px}
+.p2-photos img{aspect-ratio:3/2;object-fit:cover}
+.p2-photos .wide img{aspect-ratio:21/10}
