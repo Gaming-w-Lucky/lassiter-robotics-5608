@@ -823,3 +823,20 @@ a.season:hover{transform:translateY(-4px)}
 .doc-list a:hover{color:var(--gold-lt)}
 .doc-list li>span:not(.todo){font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .hub-page footer .foot-bar{border-top:0}
+
+/* ==================================================================
+   9. PHONE FIXES (from the 390px review)
+   ================================================================== */
+/* placeholder labels sit at the top so they never cover card text */
+.slot[data-slot]::after{top:14px;bottom:auto}
+@media(max-width:700px){
+  /* wide 21:9 / 21:8 crops turn faces into a thin strip on a phone */
+  .trojans-photo{aspect-ratio:4/3}
+  .awards-photo{aspect-ratio:4/3}
+  .machine-stage .photo-slot{aspect-ratio:4/3}
+  .stage-tag{padding:10px 14px 11px 12px}
+  .stage-tag span{font-size:.5rem;letter-spacing:.16em}
+  .robot-hero{min-height:88svh}
+  .robot-tabs{top:74px}
+  .robot-tabs-in{gap:22px}
+}
