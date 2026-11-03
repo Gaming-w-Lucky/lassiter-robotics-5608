@@ -80,14 +80,18 @@
         <div class="kicker">The robot</div>
         <h2 class="h-lg" style="margin-top:16px">Built to lock the grid.</h2>
         <div class="rule"></div>
-        <!-- TODO: get the real spec list from the build team. Do not guess mechanisms. -->
+        <!-- Specs read from the team's robot code: github.com/Brosterz09/Lassiter2026FinalBot
+             Ask the build team before adding anything the code doesn't show (weights, gear sizes, etc.). -->
         <dl class="specs">
-          <div><dt>01 · Drivetrain</dt><dd><span class="todo">TODO</span></dd></div>
-          <div><dt>02 · Intake</dt><dd><span class="todo">TODO</span></dd></div>
-          <div><dt>03 · Scoring</dt><dd><span class="todo">TODO</span></dd></div>
-          <div><dt>04 · Endgame</dt><dd><span class="todo">TODO</span></dd></div>
-          <div><dt>05 · Software &amp; vision</dt><dd><span class="todo">TODO</span></dd></div>
+          <div><dt>01 · Drivetrain</dt><dd>Four-module swerve drive with TalonFX drive and steer motors, CANcoders, and a Pigeon 2 gyro.</dd></div>
+          <div><dt>02 · Intake</dt><dd>Roller intake on a motorized pivot that drops down to collect Fuel and stows back up.</dd></div>
+          <div><dt>03 · Indexer</dt><dd>A spindexer that feeds Fuel into the shooter.</dd></div>
+          <div><dt>04 · Shooter</dt><dd>Sets its speed from the robot's distance to the hub, using a tuned distance-to-speed table.</dd></div>
+          <div><dt>05 · Endgame</dt><dd>Hang mechanism driven by a REV SPARK MAX.</dd></div>
+          <div><dt>06 · Vision</dt><dd>Front and back Limelight cameras find the robot's position on the field from AprilTags.</dd></div>
+          <div><dt>07 · Software</dt><dd>Java and WPILib command-based, CTRE Phoenix 6 swerve, and PathPlanner autonomous routines.</dd></div>
         </dl>
+        <div style="margin-top:26px"><a class="btn btn-ghost" href="https://github.com/Brosterz09/Lassiter2026FinalBot" target="_blank" rel="noopener">Robot code on GitHub ↗</a></div>
       </div>
       <a class="spec-photo slot rv" style="--d:.1s;--img:url('images/2026/gridlocker-nameplate.jpg');background-position:center 40%" href="images/2026/gridlocker-nameplate.jpg" data-full="images/2026/gridlocker-nameplate.jpg" aria-label="GridLocker side panel with the Lassiter Robotics Trojan"></a>
     </div>

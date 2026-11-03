@@ -1,31 +1,47 @@
 # Team Hub (members-only page)
 
-`team-hub.html` is a public page, but what's inside it is encrypted. Without the
-team username and password, the page source only contains scrambled data.
+`team-hub.html` is a public page, but everything inside it is encrypted. Without
+the team username and password, the page source is just scrambled data.
 
-## Change what's in the hub, or change the login
+## Add a document, journal, CAD file, instruction, or link
 
-1. Edit `_private/team-hub-content.html` (plain HTML, uses the site's styles).
-2. From the website folder, run:
+1. Open `_private/team-hub.md` in any text editor (Notepad works).
+2. Under the right section, add one line:
 
    ```
-   node tools/build-team-hub.mjs
+   - Title | link | short note
    ```
 
-   Enter the username and password you want. Running it again with a new
-   password changes the login for everyone.
-3. Upload the new `team-hub.html`.
+   | What you're adding | Example line |
+   | --- | --- |
+   | Google Doc / Sheet / Drive folder | `- Team handbook \| https://docs.google.com/document/d/... \| Rules and roles` |
+   | Onshape CAD with a picture | `- GridLocker full robot \| https://cad.onshape.com/... \| 2026 assembly \| image: gridlocker.png` |
+   | A file (PDF, Word, drawing…) | `- Battery care \| battery-care.pdf \| How we charge` (put `battery-care.pdf` in `_private/hub-files/`) |
+   | Placeholder for later | `- Wiring standards \| TODO \| coming soon` |
+   | Plain text, no link | `- Coach Simons \| \| Room 1206` |
+
+   Start a new section/tab with `# Section name`, and give it a description with
+   a `> text` line right under it. The link type (Google Doc, Onshape, PDF, GitHub…)
+   is detected automatically.
+3. Double-click **`update-team-hub.bat`** (or run `node tools/build-team-hub.mjs`).
+   It asks for the team username and password, then rebuilds `team-hub.html`.
+4. Publish the new `team-hub.html` (commit + push if the site is on GitHub).
+
+If you make a typo in the list, the build stops and tells you the line number.
+
+## Change the login
+
+Run the build again and type a new username/password. Everyone then uses the new one.
+Do this when people leave the team.
 
 ## Rules
 
-- **Never upload `_private/`.** It's the readable version. (It is git-ignored.)
-- **Link to files, don't upload them.** A PDF placed in the website folder is
-  public to anyone who guesses its URL. Put documents in Google Drive, share them
-  with the team only, and link to them from the hub.
-- **Use a long password** (a short phrase, 14+ characters). The page can be
-  downloaded and guessed offline, so a long password is the real protection.
-- **Change it when people leave the team.** Re-run the build with a new password.
-- This keeps the hub private from the public. It is not a per-person account
-  system; everyone shares one login.
-- The site needs to be served over `https://` (GitHub Pages, Netlify, etc.) for
-  the unlock to work. Opening the file directly from your computer also works.
+- **Never upload or commit `_private/`.** It's the readable version (git ignores it).
+- **Files in `hub-files/` are encrypted into the page**, so they stay private, but
+  they make the page bigger. Keep each under ~5 MB and the total under 20 MB.
+  Big things (videos, full CAD exports) belong in Google Drive. Share them with
+  the team only, and link to them.
+- **Use a long password** (a short phrase, 14+ characters). Someone could download
+  the page and try to guess offline, so a long password is the real protection.
+- Everyone shares one login. This is not a per-person account system.
+- The unlock needs `https://` (GitHub Pages is fine) or `localhost`.
