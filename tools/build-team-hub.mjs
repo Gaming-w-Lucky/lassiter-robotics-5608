@@ -167,7 +167,12 @@ if (total > MAX_TOTAL) { console.error(`Attached files total ${(total / 1048576)
 
 const user = process.env.HUB_USER ?? await ask('Team Hub username: ');
 const pass = process.env.HUB_PASS ?? await ask('Team Hub password: ', true);
-if (!user.trim() || pass.length < 10) { console.error('Username is required and the password must be at least 10 characters.'); process.exit(1); }
+if (!user.trim()) { console.error('Username is required.'); process.exit(1); }
+if (pass.length < 10) {
+  // HUB_ALLOW_SHORT=1 is for test logins only: short passwords can be guessed offline in minutes.
+  if (process.env.HUB_ALLOW_SHORT !== '1') { console.error('The password must be at least 10 characters.'); process.exit(1); }
+  console.warn('  ! Short test password. Replace it before putting anything private in the hub.');
+}
 if (!process.env.HUB_PASS) {
   const again = await ask('Repeat password: ', true);
   if (again !== pass) { console.error('Passwords did not match.'); process.exit(1); }
