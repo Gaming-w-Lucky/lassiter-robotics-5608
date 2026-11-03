@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const IG = 'https://www.instagram.com/lassiterrobotics/';
-const EMAIL = 'contact.haribi@gmail.com';   // TEMP contact address: replace with the team's own email
+const EMAIL = 'haasith.lucky@gmail.com';   // TEMP contact address: replace with the team's own email
 const PAGES = { 'index.html': 'home', 'robots.html': 'robots', 'outreach.html': 'outreach', 'join-team-5608.html': 'join', 'team-hub.html': 'hub' };
 
 const links = page => [
