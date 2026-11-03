@@ -11,29 +11,23 @@
 
 <!--
 ==========================================================================
-  ASSET CHECKLIST — drop files in /images/ and the slots fill themselves.
+  ASSETS — every image lives in /images/ (2026 season photos in /images/2026/).
   Every slot below is a <div class="slot" style="--img:url('...')">.
-  After you add a real image, DELETE the data-slot="..." attribute on that
-  element to remove the yellow placeholder label.
+  A slot with a data-slot="..." attribute shows a yellow placeholder label;
+  add that file, then DELETE the data-slot attribute.
 
-    images/hero-robot.jpg          full-screen hero — robot competing, landscape, 2400px wide
-    images/team-2026.jpg           Meet the Trojans — full team photo, landscape
-    images/robot-2026.png          Current Machine — transparent-background CAD render (best) or studio photo
-    images/sub-mechanical.jpg      subteam panel
+  Still missing:
     images/sub-electrical.jpg      subteam panel
     images/sub-software.jpg        subteam panel
     images/sub-media.jpg           subteam panel
-    images/robot-2015.jpg          legacy card
-    images/robot-2020.jpg          legacy card
-    images/robot-2026-card.jpg     legacy card
-    images/outreach.jpg            Beyond the Robot
+    images/2026/gridlocker-cad.png GridLocker CAD render (optional, for robots.html)
 
   TODO markers (search "TODO") mark every fact I did not have. Do not ship
   with them filled in wrong — leave them until you have the real number.
 ==========================================================================
 -->
 
-<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="site.css">
 </head>
 <body class="locked">
 
@@ -94,10 +88,11 @@
     <nav class="nav-links">
       <a href="#top">Home</a>
       <a href="#about">About</a>
-      <a href="#robots">Robots</a>
+      <a href="robots.html">Robots</a>
       <a href="#outreach">Outreach</a>
       <a href="join-team-5608.html">Join</a>
       <a href="https://5608boosters.org/" target="_blank" rel="noopener">Boosters ↗</a>
+      <a class="hub-link" href="team-hub.html"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>Team Hub</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
   </div>
@@ -106,10 +101,11 @@
 <div class="mobile" id="mobile">
   <a href="#top">Home <span>01</span></a>
   <a href="#about">About <span>02</span></a>
-  <a href="#robots">Robots <span>03</span></a>
+  <a href="robots.html">Robots <span>03</span></a>
   <a href="#outreach">Outreach <span>04</span></a>
   <a href="join-team-5608.html">Join <span>05</span></a>
   <a href="https://5608boosters.org/" target="_blank" rel="noopener">Boosters <span>↗</span></a>
+  <a href="team-hub.html">Team Hub <span>Members</span></a>
 </div>
 
 <!-- ================================================================
@@ -169,27 +165,26 @@
   <div class="wrap">
     <div class="head-row rv">
       <div>
-        <div class="kicker">Current Machine</div>
-        <!-- TODO: replace REBUILT with the real 2026 robot name -->
-        <h2 class="h-lg" style="margin-top:16px">2026 <span style="color:var(--crimson-lt)">//</span> <span class="todo" style="font-size:.42em;vertical-align:middle">TODO: robot name</span></h2>
+        <div class="kicker">Current Machine · 2026 REBUILT</div>
+        <h2 class="h-lg" style="margin-top:16px">2026 <span style="color:var(--crimson-lt)">//</span> GridLocker</h2>
         <div class="rule"></div>
       </div>
       <div style="padding-bottom:6px">
-        <!-- LINK: point at /robots when the Robots page exists -->
-        <a class="btn btn-ghost" href="#robots">Explore the 2026 robot <span class="ar">→</span></a>
+        <a class="btn btn-ghost" href="robots.html">Explore GridLocker <span class="ar">→</span></a>
       </div>
     </div>
 
-    <div class="machine-stage rv temp-cad" style="--d:.08s">
-      <!-- TEMPORARY: 2024 CAD screenshot. Replace with the 2025 robot render when available. -->
-      <div class="slot cad-slot" style="--img:url('images/cad-2024-temp.jpg')"></div>
-      <div class="cad-temp-note"><b>TEMPORARY CAD PREVIEW</b><span>2024 robot CAD shown as a placeholder until the 2025 robot render is added.</span></div>
-      <div class="callouts" id="callouts">
-        <div class="co c1"><b><s>01</s>Drivetrain — TODO</b><i></i></div>
-        <div class="co c2"><b><s>02</s>Intake — TODO</b><i></i></div>
-        <div class="co c3"><b><s>03</s>Scoring — TODO</b><i></i></div>
-        <div class="co c4"><b><s>04</s>Vision — TODO</b><i></i></div>
-      </div>
+    <div class="machine-stage rv" style="--d:.08s">
+      <div class="slot photo-slot" style="--img:url('images/2026/gridlocker-hero.jpg');background-position:center 60%"></div>
+      <div class="stage-tag"><b>GridLocker</b><span>Team 5608 · 2026 REBUILT season</span></div>
+    </div>
+
+    <!-- 2026 results — source: thebluealliance.com/team/5608/2026 -->
+    <div class="season-strip rv" style="--d:.14s">
+      <div><span class="ev">Dalton · Week 1</span><b>Team Spirit Award</b><span class="res">Playoffs · Alliance 8</span></div>
+      <div><span class="ev">Columbus · Week 3</span><b>Playoffs</b><span class="res">Alliance 6</span></div>
+      <div><span class="ev">District Championship</span><b>Rising All-Star Award</b><span class="res">Macon, GA</span></div>
+      <div><span class="ev">GRITS · Offseason</span><b>October 2026</b><span class="res">Gainesville, GA</span></div>
     </div>
   </div>
 </section>
@@ -257,17 +252,32 @@
         <h2 class="h-lg" style="margin-top:16px">The history of Lassiter Robotics.</h2>
         <div class="rule"></div>
       </div>
+      <div style="padding-bottom:6px">
+        <a class="btn btn-ghost" href="robots.html#archive">Every season <span class="ar">→</span></a>
+      </div>
     </div>
     <p class="lede rv" style="--d:.06s">A look back at the machines and seasons that built FRC Team 5608.</p>
 
+    <!-- Events and awards verified against thebluealliance.com/team/5608/history -->
     <div class="legacy-rail rv" style="--d:.1s">
+      <a class="gen y2026" href="robots.html">
+        <div class="slot" style="--img:url('images/2026/gridlocker-front.jpg')"></div>
+        <div class="gen-body">
+          <div class="gen-yr">2026</div>
+          <div class="gen-game">REBUILT</div>
+          <div class="gen-name">GridLocker</div>
+          <div class="gen-note">Team Spirit Award at Dalton and the Rising All-Star Award at the Peachtree District Championship.</div>
+          <div class="gen-link">Full robot page →</div>
+        </div>
+      </a>
+
       <article class="gen y2025">
         <div class="slot" style="--img:url('images/history-2025.jpg')"></div>
         <div class="gen-body">
           <div class="gen-yr">2025</div>
           <div class="gen-game">Reefscape</div>
           <div class="gen-name">Team 5608 Competition Robot</div>
-          <div class="gen-note">Reefscape season archive from the previous Lassiter Robotics site.</div>
+          <div class="gen-note">Competed at Gainesville and Dalton, then the Peachtree District Championship.</div>
           <div class="gen-link">Archive photo · old site</div>
         </div>
       </article>
@@ -278,7 +288,7 @@
           <div class="gen-yr">2024</div>
           <div class="gen-game">Crescendo</div>
           <div class="gen-name">Team 5608 Competition Robot</div>
-          <div class="gen-note">Crescendo season machine. Photo from the team archive.</div>
+          <div class="gen-note">The team's return season, competing at Dalton and Gwinnett.</div>
           <div class="gen-link">Team archive photo</div>
         </div>
       </article>
@@ -327,14 +337,15 @@
           <div class="gen-yr">2017</div>
           <div class="gen-game">FIRST Steamworks</div>
           <div class="gen-name">Team 5608 Competition Robot</div>
-          <div class="gen-note">Steamworks season — the team reached the state championship.</div>
+          <div class="gen-note">Excellence in Engineering Award at Dalton, then on to the Peachtree State Championship.</div>
           <div class="gen-link">Archive photo · old site</div>
         </div>
       </article>
 
       <div class="gap-card archive-gap" style="border-color:rgba(201,162,39,.3)">
         <b>2016</b>
-        <span>No robot archive found on the previous site</span>
+        <span>Competed at Dalton, Kennesaw &amp; the State Championship</span>
+        <span class="gap-sub">No robot photo in the archive yet</span>
       </div>
 
       <article class="gen y2015">
@@ -343,7 +354,7 @@
           <div class="gen-yr">2015</div>
           <div class="gen-game">Recycle Rush</div>
           <div class="gen-name">Rookie Season</div>
-          <div class="gen-note">5608's rookie year: the team reached state and earned a finalist banner at the Peachtree Regional.</div>
+          <div class="gen-note">5608's rookie year: Regional Finalists and Highest Rookie Seed at the Peachtree Regional.</div>
           <div class="gen-link">Archive photo · old site</div>
         </div>
       </article>
@@ -362,22 +373,27 @@
       <div class="rule"></div>
     </div>
     <div class="awards-photo slot rv" style="--d:.05s;--img:url('images/awards-team.jpg');background-position:center 46%"></div>
-    <!-- TODO: replace each plaque with a real award. Delete any you don't fill. -->
+    <!-- Every award listed by The Blue Alliance (thebluealliance.com/team/5608/history). -->
     <div class="awards">
       <div class="plaque rv" style="--d:0s">
-        <div class="yr">TODO — Year</div>
-        <h3>Award name</h3>
-        <p>One line on what the team did to earn it, and at which event.</p>
+        <div class="yr">2026 · GridLocker</div>
+        <h3>Rising All-Star Award</h3>
+        <p>Peachtree District Championship · Macon, GA</p>
       </div>
       <div class="plaque rv" style="--d:.08s">
-        <div class="yr">TODO — Year</div>
-        <h3>Award name</h3>
-        <p>One line on what the team did to earn it, and at which event.</p>
+        <div class="yr">2026 · GridLocker</div>
+        <h3>Team Spirit Award</h3>
+        <p>PCH District Dalton Event · Dalton, GA</p>
       </div>
       <div class="plaque rv" style="--d:.16s">
-        <div class="yr">TODO — Year</div>
-        <h3>Award name</h3>
-        <p>One line on what the team did to earn it, and at which event.</p>
+        <div class="yr">2017 · Steamworks</div>
+        <h3>Excellence in Engineering Award</h3>
+        <p>PCH District Dalton Event · Dalton, GA</p>
+      </div>
+      <div class="plaque rv" style="--d:.24s">
+        <div class="yr">2015 · Rookie season</div>
+        <h3>Regional Finalists</h3>
+        <p>Peachtree Regional, where 5608 was also the Highest Rookie Seed.</p>
       </div>
     </div>
   </div>
@@ -440,14 +456,15 @@
     <div class="col">
       <b>Team</b>
       <a href="#about">About</a>
-      <a href="#robots">Robots</a>
+      <a href="robots.html">Robots</a>
       <a href="#outreach">Outreach</a>
       <a href="join-team-5608.html">Join</a>
+      <a href="team-hub.html">Team Hub (members)</a>
     </div>
     <div class="col">
       <b>Elsewhere</b>
-      <!-- LINK: real Instagram + YouTube URLs -->
-      <a href="#">Instagram</a>
+      <!-- Instagram handle from The Blue Alliance team profile. LINK: real YouTube URL -->
+      <a href="https://www.instagram.com/lassiterrobotics" target="_blank" rel="noopener">Instagram ↗</a>
       <a href="#">YouTube</a>
       <a href="https://www.thebluealliance.com/team/5608" target="_blank" rel="noopener">The Blue Alliance ↗</a>
       <a href="https://www.firstinspires.org/" target="_blank" rel="noopener">FIRST ↗</a>
